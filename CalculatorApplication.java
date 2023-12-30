@@ -4,10 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CalculatorApplication implements ActionListener {
-
+    // variable declaration
     double num1 = 0, num2 = 0, result = 0;
     int calculation;
-
+    // creating objects
     JFrame frame = new JFrame("Calculator");
     JLabel label = new JLabel();
     JTextField textField = new JTextField();
@@ -35,12 +35,13 @@ public class CalculatorApplication implements ActionListener {
     JButton buttonReciprocal = new JButton("1/x");
     JButton buttonSqrt = new JButton("√");
 
-
+    // creating constructor
     CalculatorApplication() {
         prepareGui();
         addComponents();
         addActionEvent();
     }
+    // method which prepares the user´s interface
     public void prepareGui () {
         frame.setSize(305,510);
         frame.getContentPane().setLayout(null);
@@ -49,6 +50,7 @@ public class CalculatorApplication implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    // adds all components to the frame
     public void addComponents(){
         label.setBounds(250,0,50,50);
         label.setForeground(Color.white);
@@ -189,7 +191,7 @@ public class CalculatorApplication implements ActionListener {
         buttonClear.setFocusable(false);
         frame.add(buttonClear);
     }
-
+    // adds the action event
     public void addActionEvent(){
         onRadioButton.addActionListener(this);
         offRadioButton.addActionListener(this);
@@ -218,6 +220,7 @@ public class CalculatorApplication implements ActionListener {
     public static void main(String[] args) {
         CalculatorApplication calculator = new CalculatorApplication();
     }
+    // adds the functionality for each button
     @Override
     public void actionPerformed(ActionEvent e){
         Object source = e.getSource();
@@ -321,7 +324,7 @@ public class CalculatorApplication implements ActionListener {
                 case 3 -> result = num1 * num2;
                 case 4 -> result = num1 / num2;
 
-                // replacing .0 with blank spot , to make it more clear as it is of no use to us anyway.
+    // replacing .0 with blank spot , to make it more clear as it is of no use to us anyway.
             }
             if (Double.toString(result).endsWith(".0")){
                 textField.setText(Double.toString(result).replace(".0", ""));
@@ -332,7 +335,7 @@ public class CalculatorApplication implements ActionListener {
             num1 = result;
         }
     }
-
+    // declaring on/off functionality
     public void enable(){
         onRadioButton.setEnabled(false);
         offRadioButton.setEnabled(true);
